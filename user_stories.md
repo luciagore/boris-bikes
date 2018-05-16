@@ -43,6 +43,31 @@ DockingStation <--- #bike ---> [array, of, bikes]
 
 
 
+challenge 12
+
+As a member of the public,
+So that I am not confused and charged unnecessarily,
+I'd like docking stations not to release bikes when there are none available.
+
+
+Objects          | Messages 
+DockingStation   | release_bike 
+
+DockingStation <--- release_bike ---> if bike is not empty, release bike 
+
+
+Challenge 13 
+
+As a maintainer of the system,
+So that I can control the distribution of bikes,
+I'd like docking stations not to accept more bikes than their capacity.
+
+
+Objects          | Messages 
+DockingStation   | dock(bike)
+
+DockingStation <--- dock(bikes) ---> reject bike if dock is full 
+
 
 
 

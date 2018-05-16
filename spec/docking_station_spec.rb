@@ -1,14 +1,28 @@
 require_relative '../lib/docking_station'
 
 describe DockingStation do 
-  it 'responds to release_bike' do
-    expect(DockingStation.new).to respond_to(:release_bike)
-  end
-  # it { is_expected.to respond_to :release_bike}
 
-  it 'releases working bikes' do
-    bike = subject.release_bike
-    expect(bike).to be_working
+
+  describe '#release_bike' do
+    it 'responds to release_bike' do
+      expect(DockingStation.new).to respond_to(:release_bike)
+    end
+    # it { is_expected.to respond_to :release_bike}
+
+    # it 'release a bike' do
+    #   bike = subject.release_bike
+    #   expect(bike).to be_working
+    # end
+
+    it 'we expect it to release the docked bike' do
+      bike = Bike.new
+      subject.dock(bike)
+      expect(subject.release_bike).to eq bike
+    end
+
+    it 'raises an error when there are no bikes' do
+      expect {subject.release_bike}.to raise_error
+    end
   end
 
   describe '#bike' do
@@ -40,6 +54,11 @@ describe DockingStation do
       bike = Bike.new
       # We want to return the bike we dock
       expect(DockingStation.new.dock(bike)).to eq (bike)
+    end  
+
+    it "raises an error when dock capacity is full" do
+      docking_station = subject.dock(Bike.new)
+      expect{ docking_station.dock(Bike.new)}.to raise_error
     end  
   end 
 
