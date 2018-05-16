@@ -6,8 +6,4 @@ describe Bike do
     expect(Bike.new).to respond_to(:working?)
   end
   
-  # it 'is working' do
-  #   expect(bike).to be_working
-  # end
-
 end
