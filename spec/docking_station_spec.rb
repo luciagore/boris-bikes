@@ -31,8 +31,9 @@ describe DockingStation do
     it 'release a bike' do
       bike = Bike.new
       subject.dock(bike)
+      current_number_of_bikes = subject.bikes.length
       subject.release_bike
-      expect(subject.bikes).not_to include(bike)
+      expect(subject.bikes.length).to eq (current_number_of_bikes - 1)
     end
 
     it 'we expect it to release the docked bike' do
@@ -42,7 +43,16 @@ describe DockingStation do
     end
 
     it 'raises an error when there are no bikes' do
-      expect {subject.release_bike}.to raise_error
+      expect {subject.release_bike}.to raise_error 'No bikes available'
+    end
+
+    it 'doesnt release a broken bike' do
+      bike1 = Bike.new
+      bike2 = Bike.new 
+      bike2.report_broken
+      subject.dock(bike1)
+      subject.dock(bike2)
+      expect(subject.release_bike).to eq bike1
     end
   end
 
@@ -80,7 +90,7 @@ describe DockingStation do
 
     it "raises an error when dock capacity is full" do
       docking_station = subject.dock(Bike.new)
-      expect{ docking_station.dock(Bike.new)}.to raise_error
+      expect{ docking_station.dock(Bike.new)}.to raise_error 'dock at maximum capacity'
     end
 
     it 'raises an error when its full' do

@@ -115,4 +115,11 @@ DockingStation      #return_bike        add bike to stored bikes (@bikes array)
 Bike                #report_broken      Change Working? to false 
 
 
+As a maintainer of the system,
+So that I can manage broken bikes and not disappoint users,
+I'd like docking stations not to release broken bikes.
+
+
+Objects           | Messages          | result 
+DockingStation      release_bike        working bike 
 

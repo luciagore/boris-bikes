@@ -12,4 +12,6 @@ def release_bike_before_dock
   station.release_bike
 end
 
-p [] == true 
+array = [1,2,3]
+
+puts array[-1]

@@ -23,8 +23,24 @@ class DockingStation
 
   def release_bike
     fail 'No bikes available' if empty?
-    @bikes.pop
+    @bikes.each_with_index do |bike, index|
+      if bike.working? == true 
+        @bikes.delete_at(index)
+        return bike
+      end
+    end
+
   end
+
+  # I want release bike to return an element of its array (an instance of Bike class, e.g. bike) 
+  # that is working (bike.working? == true)
+
+  # step 1, look at the first element. 
+  # if the element.working? == true
+    # return
+  # else move to the next element and repeat 
+  # stop when I've reached the last element (at index of array.length -1) 
+
 
   private
 

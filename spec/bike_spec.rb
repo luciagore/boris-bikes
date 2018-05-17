@@ -9,7 +9,6 @@ describe Bike do
 
     it 'change working to false' do
       subject.report_broken
-      p "subject after report_broken in rspec #{subject.working?}!"
       expect(subject.working?).to be false
     end
   end
