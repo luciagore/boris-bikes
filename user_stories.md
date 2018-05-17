@@ -94,5 +94,15 @@ DockingStation    | dock(bike)   | return bike
 DockingStation <---- dock(bike) ----> return bike 
 
 
-    
+
+Challenge 17 
+
+As a system maintainer,
+So that busy areas can be served more effectively,
+I want to be able to specify a larger capacity when necessary.
+
+Objects           | Messages          | result 
+DockingStation      change_capacity   capacity change
+
+
 
