@@ -19,8 +19,6 @@ describe DockingStation do
       expect{station.dock(Bike.new)}.to raise_error 'dock at maximum capacity'
     end
 
-#we are trying to
-
   end
 
   describe '#release_bike' do
@@ -90,5 +88,6 @@ describe DockingStation do
       expect{subject.dock(Bike.new)}.to raise_error 'dock at maximum capacity'
     end
   end
+
 
 end

@@ -104,5 +104,15 @@ I want to be able to specify a larger capacity when necessary.
 Objects           | Messages          | result 
 DockingStation      change_capacity   capacity change
 
+Challenge 18 
+
+As a member of the public,
+So that I reduce the chance of getting a broken bike in future,
+I'd like to report a bike as broken when I return it.
+
+Objects           | Messages          | result 
+DockingStation      #return_bike        add bike to stored bikes (@bikes array)
+Bike                #report_broken      Change Working? to false 
+
 
 
