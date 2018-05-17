@@ -89,8 +89,8 @@ describe DockingStation do
     end
 
     it "raises an error when dock capacity is full" do
-      docking_station = subject.dock(Bike.new)
-      expect{ docking_station.dock(Bike.new)}.to raise_error 'dock at maximum capacity'
+      subject.capacity.times { subject.dock(Bike.new) }
+      expect{ subject.dock(Bike.new)}.to raise_error 'dock at maximum capacity'
     end
 
     it 'raises an error when its full' do
