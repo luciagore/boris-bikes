@@ -67,7 +67,7 @@ describe DockingStation do
 
     it 'raises an error when there are more than 20 bikes' do
       station = DockingStation.new
-      20.times { station.dock(Bike.new) }
+      DockingStation::DEFAULT_CAPACITY.times { station.dock(Bike.new) }
       expect{station.dock(Bike.new)}.to raise_error
     end
   end 
