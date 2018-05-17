@@ -11,9 +11,9 @@ describe DockingStation do
     it { is_expected.to respond_to :release_bike}
 
     it 'release a bike' do
-      subject.dock(Bike.new)
+      subject.dock(Bike.new) 
       subject.release_bike
-      expect(subject.bike).to be_working
+      expect(subject.bikes).to be_working 
     end
 
     it 'we expect it to release the docked bike' do
@@ -30,13 +30,13 @@ describe DockingStation do
   describe '#bike' do
 
     it 'responds to bike' do
-      expect(DockingStation.new).to respond_to(:bike)
+      expect(DockingStation.new).to respond_to(:bikes)
     end 
 
     it 'returns docked bikes' do
       bike = Bike.new
       subject.dock(bike)
-      expect(subject.bike).to eq bike
+      expect(subject.bikes).to eq bike
     end
 
   end
@@ -62,6 +62,12 @@ describe DockingStation do
       docking_station = subject.dock(Bike.new)
       expect{ docking_station.dock(Bike.new)}.to raise_error
     end  
+
+    it 'raises an error when there are more than 20 bikes' do
+      station = DockingStation.new
+      20.times { station.dock(Bike.new) }
+      expect{station.dock(Bike.new)}.to raise_error
+    end
   end 
 
 end

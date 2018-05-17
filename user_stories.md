@@ -23,24 +23,29 @@ We'll call the check_if_bike_working method (message sender) on the Bike object 
 We'll call the release_bike method (message sender) on the Docking Station object (message reciever) 
 
 
+----------
 
-
-As a member of the public
+1) As a member of the public
 So I can return bikes I've hired
 I want to dock my bike at the docking station
 
-As a member of the public
+2) As a member of the public
 So I can decide whether to use the docking station
 I want to see a bike that has been docked
 
-Objects          | Messages 
-Docking Station  | Dock bike
-Docking Station  | return bikes that it holds 
+
+** EXAMPLE FROM SOPHIE ** 
+Object              |   Message (method that is calling)  | Result (expected return)
+Member of public
+1) DockingStation                  dock(bike)                 return bike 
+2) DockingStation.                 bike                       return bike 
+
 
 DockingStation <--- dock <--- a Bike 
-
 DockingStation <--- #bike ---> [array, of, bikes]
+ 
 
+ -----
 
 
 challenge 12
@@ -63,13 +68,31 @@ So that I can control the distribution of bikes,
 I'd like docking stations not to accept more bikes than their capacity.
 
 
-Objects          | Messages 
-DockingStation   | dock(bike)
-
-DockingStation <--- dock(bikes) ---> reject bike if dock is full 
+Objects          | Messages   | result 
+DockingStation   | dock(bike) | 
 
 
 
+Challenge 14 
+
+As a system maintainer,
+So that I can plan the distribution of bikes,
+I want a docking station to have a default capacity of 20 bikes.
+
+If docking station has 20 or more bikes 
+
+Objects           | Messages     | result 
+DockingStation    | dock(bike)   | error 
+
+DockingStation <---- dock(bike) ----> error 
+
+If docking station has less than 20 bikes 
+
+Objects           | Messages     | result 
+DockingStation    | dock(bike)   | return bike 
+
+DockingStation <---- dock(bike) ----> return bike 
 
 
+    
 

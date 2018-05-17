@@ -12,6 +12,4 @@ def release_bike_before_dock
   station.release_bike
 end
 
-puts 2 + 2
-
-puts 2.+(2)
+p [] == true 
