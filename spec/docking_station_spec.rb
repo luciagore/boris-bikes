@@ -34,10 +34,10 @@ describe DockingStation do
       expect(DockingStation.new).to respond_to(:bikes)
     end 
 
-    it 'returns docked bikes' do
+    it 'returns all of the docked bikes' do
       bike = Bike.new
       subject.dock(bike)
-      expect(subject.bikes).to eq bike
+      expect(subject.bikes).to be_kind_of(Array)
     end
 
   end
@@ -55,8 +55,9 @@ describe DockingStation do
 
     it "docks the bike" do
       bike = Bike.new
-      # We want to return the bike we dock
-      expect(DockingStation.new.dock(bike)).to eq (bike)
+      subject.dock(bike)
+      # check that the bike is in array of docked bikes 
+      expect(subject.bikes).to include(bike)
     end  
 
     it "raises an error when dock capacity is full" do
