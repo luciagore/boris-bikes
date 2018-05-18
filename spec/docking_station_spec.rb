@@ -24,6 +24,7 @@ describe DockingStation do
   end
 
   describe '#release_bike' do
+
     it 'responds to release_bike' do
       expect(DockingStation.new).to respond_to(:release_bike)
     end
@@ -31,17 +32,17 @@ describe DockingStation do
     it { is_expected.to respond_to :release_bike}
 
     it 'release a bike' do
-      bike = bike
+      allow(bike).to receive_messages(:working? => true)
       subject.dock(bike)
       current_number_of_bikes = subject.bikes.length
       subject.release_bike
-      expect (subject.bikes.length).to eq (current_number_of_bikes - 1)
+      expect(subject.bikes.length).to eq (current_number_of_bikes - 1)
     end
 
     it 'we expect it to release the docked bike' do
-      bike = bike
-      subject.dock(bike)
-      expect(subject.release_bike).to eq bike
+      allow(bike).to receive_messages(:working? => true)
+      subject.dock(Bike.new)
+      expect(subject.release_bike).to be_a Bike
     end
 
     it 'raises an error when there are no bikes' do
@@ -49,13 +50,9 @@ describe DockingStation do
     end
 
     it 'doesnt release a broken bike' do
-      bike1 = bike
-      bike2 = bike
-      bike2.report_broken
-      subject.dock(bike1)
-      subject.dock(bike2)
+      # allow(bike).to receive_messages(:working? => false)
+      subject.dock(Bike.new)
       subject.release_bike
-      p subject.bikes
       expect {subject.release_bike}.to raise_error 'No bikes available'
     end
   end
@@ -63,7 +60,7 @@ describe DockingStation do
   describe '#bike' do
 
     it 'responds to bike' do
-      expect(DockingStation.new).to respond_to(bikes)
+      expect(DockingStation.new).to respond_to(:bikes)
     end
 
     it 'returns all of the docked bikes' do

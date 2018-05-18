@@ -33,9 +33,9 @@ class DockingStation
 
   def next_working_bike
     @bikes.each_with_index do |bike,index|
-      if bike.working? 
+      if bike.working?
         @bikes.delete_at(index)
-        return bike 
+        return bike
       end
       # return bike && @bikes.delete_at(index) if bike.working?
     end
