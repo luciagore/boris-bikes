@@ -5,13 +5,12 @@ class Bike
   end
 
   def working?
-    # if status == broken ? false : true
     @working_status
   end
 
   def report_broken
-    @working_status = false
     "You have reported the bike as broken"
+    @working_status = false
   end
 
 

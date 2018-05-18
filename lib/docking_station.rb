@@ -6,10 +6,6 @@ class DockingStation
 
   attr_reader :bikes, :capacity
 
-  # def bikes
-  #   @bikes[0]
-  # end
-
   def initialize(capacity = DEFAULT_CAPACITY)
     @bikes = []
     @capacity = capacity
@@ -18,29 +14,33 @@ class DockingStation
   def dock(bike)
     fail 'dock at maximum capacity' if full?
     @bikes << bike
-    # @bikes[0]
+    "Your bike has been docked"
   end
 
   def release_bike
     fail 'No bikes available' if empty?
-    @bikes.each_with_index do |bike, index|
-      if bike.working? == true 
-        @bikes.delete_at(index)
-        return bike
-      end
+    next_bike = next_working_bike
+    if next_bike.is_a? Bike
+      return next_bike
+    elsif next_bike == false
+      fail 'No bikes available'
     end
 
+
+    # fail 'No bikes available' unless next_bike == true && next_bike.is_a? Bike
+    # return next_bike
   end
 
-  # I want release bike to return an element of its array (an instance of Bike class, e.g. bike) 
-  # that is working (bike.working? == true)
-
-  # step 1, look at the first element. 
-  # if the element.working? == true
-    # return
-  # else move to the next element and repeat 
-  # stop when I've reached the last element (at index of array.length -1) 
-
+  def next_working_bike
+    @bikes.each_with_index do |bike,index|
+      if bike.working? 
+        @bikes.delete_at(index)
+        return bike 
+      end
+      # return bike && @bikes.delete_at(index) if bike.working?
+    end
+    return false
+  end
 
   private
 
