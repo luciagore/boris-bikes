@@ -27,11 +27,14 @@ describe Van do
     end
 
 
-  # describe '#bikes_tovan' do
-  #   it 'moves bikes from garage to van' do
-  #     allow(bike).to receive_messages(:working? => true)
-  #     allow
-  # end
+  describe '#bikes_tovan' do
+    it 'moves working bikes from garage to van' do
+      allow(bike).to receive_messages(:working? => true)
+      allow(garage).to receive_messages(:bikes_ingarage => [bike, bike])
+      subject.bikes_tovan(garage)
+      expect(subject.bikes_invan).to eq(garage.bikes_ingarage)
+    end
+  end
 
   end
 

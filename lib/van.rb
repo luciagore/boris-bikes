@@ -28,4 +28,8 @@ attr_accessor :bikes_invan
     return bikes_ingarage
   end
 
+  def bikes_tovan(garage)
+    @bikes_invan = garage.bikes_ingarage
+  end
+
 end
