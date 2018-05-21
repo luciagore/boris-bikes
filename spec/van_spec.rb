@@ -16,7 +16,7 @@ describe Van do
   end
   end
 
-  describe '#bikes_to_garage' do
+  describe '#bikes_togarage' do
     it 'moves bikes from van to garage' do
       allow(bike1).to receive_messages(:working? => false)
       allow(garage).to receive_messages(:take_bikes => 3)
@@ -26,6 +26,12 @@ describe Van do
       expect(subject.bikes_invan.length).to eq 0
     end
 
+
+  # describe '#bikes_tovan' do
+  #   it 'moves bikes from garage to van' do
+  #     allow(bike).to receive_messages(:working? => true)
+  #     allow
+  # end
 
   end
 

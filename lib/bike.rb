@@ -1,6 +1,8 @@
 class Bike
 
-  def initialize 
+  attr_accessor :working_status
+
+  def initialize
     @working_status = true
   end
 
@@ -13,5 +15,9 @@ class Bike
     @working_status = false
   end
 
-
 end
+
+b = Bike.new
+p b.working_status
+p b.working_status = false
+p b.working_status
